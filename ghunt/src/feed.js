@@ -3,6 +3,7 @@ import { Box, Flex } from "@chakra-ui/core";
 import { PageHeader } from './components/page-header';
 import { GroupTitle } from './components/group-title';
 import { Filters } from './components/filters';
+import { Repo } from './components/repo';
 
 export function Feed() {
     return (
@@ -12,6 +13,9 @@ export function Feed() {
                 <GroupTitle />
                 <Filters/>
             </Flex>
+            <Box>
+                <Repo/>
+            </Box>
         </Box>
     );
 }
