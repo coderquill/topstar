@@ -13,19 +13,16 @@ export function Feed() {
                 <GroupTitle />
                 <Filters/>
             </Flex>
-            <SimpleGrid columns={3} spacing='15px'>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
-                <Repo/>
+            <SimpleGrid columns={1} spacing='15px'>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
+                <Repo isListView = {false}/>
             </SimpleGrid>
             <Flex alignItems='center' justifyContent='center' mt='20px' mb = '20px'>
                 <Button variantColor='blue'>Load next group</Button>
