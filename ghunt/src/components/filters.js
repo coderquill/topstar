@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Flex, Select, Button, Menu, MenuButton, MenuList, MenuItem, Stack } from "@chakra-ui/core";
+import React, { useState, useEffect } from "react"; 
+import { Select, Button, Menu, MenuButton, MenuList, MenuItem, Stack } from "@chakra-ui/core";
 import languages from '../data/languages.json';
 import { FaTable, FaList } from "react-icons/fa";
 
-export function Filters() {
+export function Filters(props) {
 
-    
+    const {onViewChange} = props;
+
     const [viewType, setViewType] = useState( 'grid' );
     
-    
+    useEffect( ()=>{
+        onViewChange(viewType);
+    }, [viewType]);
 
     return (
         <Stack isInline>
@@ -51,8 +54,8 @@ export function Filters() {
                 >
                  List
                 </Button>
-            </Stack >
+            </Stack>
 
-        </Stack >
+        </Stack>
     );
 }
