@@ -1,43 +1,48 @@
 import React, { useState, useEffect } from "react"; 
-import { Select, Button, Menu, MenuButton, MenuList, MenuItem, Stack } from "@chakra-ui/core";
+import { Box, Icon, Select, Button, Menu, MenuButton, MenuList, MenuItem, Stack } from "@chakra-ui/core";
 import languages from '../data/languages.json';
 import { FaTable, FaList } from "react-icons/fa";
 
 export function Filters(props) {
 
-    const {onViewChange} = props;
-
-    const [viewType, setViewType] = useState( 'grid' );
+    const {onViewChange, viewType, onDateJumpChange, dateJump, language, onLanguageChange } = props;
     
-    useEffect( ()=>{
-        onViewChange(viewType);
-    }, [viewType]);
-
+    
+    
     return (
         <Stack isInline>
-            <Select color='blue'>
+            <Select value={language} onChange={(e)=>onLanguageChange(e.target.value)}>
                 {languages.map((language) => (
-                    <option value={language.value}>{language.title}</option>
+                    <option key={language.value} value={language.value}>{language.title}</option>
                 ))}
             </Select>
             <Menu>
-                <MenuButton as={Button} bg='white' borderWidth={1} px='30px' fontWeight={400} leftIcon='calendar' >
-                    Actions
+                <MenuButton 
+                textAlign='left'
+                w = '250px'
+                justifyContent = 'flex-start'
+                as={Button} 
+                bg='white' 
+                borderWidth={1} 
+                px='15px' 
+                fontWeight={400} 
+                _focus={{boxShadow:'none'}}
+                >
+                <Icon name='calendar' mr={3}/>
+                <Box as='span' textTransform="capitalize">{dateJump}</Box>
                 </MenuButton>
                 <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem >
-                        Attend a Workshop
-                </MenuItem>
+                    <MenuItem onClick={()=>onDateJumpChange('day')}>Daily</MenuItem>
+                    <MenuItem onClick={()=>onDateJumpChange('week')} >Weekly</MenuItem>
+                    <MenuItem onClick={()=>onDateJumpChange('month')}>Monthly</MenuItem>
+                    <MenuItem onClick={()=>onDateJumpChange('year')}>Yearly</MenuItem>
                 </MenuList>
             </Menu>
 
             <Stack isInline spacing={0} borderBottomWidth={1} rounded='5px' alignItems='center' ml='10px'>
                 <Button h='100%'
-                    onClick={() => setViewType('grid') }
+                   // onClick={() => setViewType('grid') }
+                    onClick={()=>onViewChange('grid')}
                     fontWeight={400}
                     roundedRight={0}
                     bg = {viewType === 'grid' ? 'gray.200' : 'white'}
@@ -46,7 +51,7 @@ export function Filters(props) {
                 Grid
                 </Button>
                 <Button h='100%' 
-                    onClick={() => setViewType('list') }
+                    onClick={() => onViewChange('list') }
                     fontWeight={400}
                     roundedLeft={0}
                      bg = {viewType === 'list' ? 'gray.200' : 'white'}
