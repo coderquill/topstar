@@ -4,6 +4,7 @@ import { PageHeader } from './components/page-header';
 import { GroupTitle } from './components/group-title';
 import { Filters } from './components/filters';
 import { Repo } from './components/repo';
+import { Loader } from './components/page-loader';
 import moment from 'moment';
 import useFetch from 'use-http/dist';
 
@@ -40,6 +41,7 @@ export function Feed() {
         setEndDate(endDate);
         setStartDate(startDate);
 
+        setRepositories([]);
 
     }, [dateJump, language]);
 
@@ -64,6 +66,7 @@ export function Feed() {
     return (
         <Box maxWidth='1200px' mx='auto'>
             <PageHeader />
+            { repositories.length=== 0 && loading && <Loader/> }
             <Flex alignItems='center' justifyContent='space-between' mb='25px'>
                 <GroupTitle
                     startDate={startDate}
@@ -95,7 +98,7 @@ export function Feed() {
                         {groupTitle}
                         <SimpleGrid columns={viewType === 'list' ? 1 : 3} spacing='15px'>
                             {repoGroup.items.map(repo =>
-                                //console.log("each repo"+ JSON.stringify(repo));
+                                
                                 <Repo isListView={viewType === 'list' ? true : false} repo={repo} />
                             )}
                         </SimpleGrid>
