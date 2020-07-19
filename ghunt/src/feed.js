@@ -7,7 +7,22 @@ import { Repo } from './components/repo';
 import moment from 'moment';
 import useFetch from 'use-http/dist';
 
+function transformFilters({ language, startDate, endDate }) {
+    const transformedFilters = {};
+    const languageQuery = language ? `language:${language} ` : "";
+    const dateQuery = `created:${startDate}..${endDate}`;
+
+    transformedFilters.q = languageQuery + dateQuery;
+    transformedFilters.sort = "stars";
+    transformedFilters.order = 'desc';
+    
+    return transformedFilters;
+}
+
+
 export function Feed() {
+
+    const { loading, error, get } = useFetch('https://api.github.com',);
     
     const [viewType, setViewType] = useState('grid');
     const [dateJump, setDateJump] = useState('day');
@@ -16,13 +31,39 @@ export function Feed() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState(moment().subtract(1, 'day').format());
 
+    const [repositories, setRepositories] = useState([]);
+
     useEffect(() => {
         const endDate = moment().subtract(1, 'day').format();
         const startDate = moment(endDate).subtract(1, dateJump).format();
         
-        console.log(endDate, startDate);
+        setEndDate(endDate);
+        setStartDate(startDate);
 
-    }, [dateJump]);
+        
+    }, [dateJump, language]);
+
+    useEffect(() => {
+        if (!startDate) {
+            return;
+        }
+
+        const filters = transformFilters({ language, startDate, endDate });
+        const filtersQuery = new URLSearchParams(filters).toString();
+
+
+
+        get(`/search/repositories?${filtersQuery}`).then((res) => {
+            setRepositories([
+                ...repositories,
+                {
+                    startDate,
+                    endDate,
+                    items: res.items
+                },
+            ]);
+        });
+    }, [startDate]);
 
     return (
         <Box maxWidth='1200px' mx='auto'>
