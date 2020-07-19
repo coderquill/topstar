@@ -66,7 +66,7 @@ export function Feed() {
     return (
         <Box maxWidth='1200px' mx='auto'>
             <PageHeader />
-            { repositories.length=== 0 && loading && <Loader/> }
+            { repositories.length === 0 && loading && <Loader/> }
             <Flex alignItems='center' justifyContent='space-between' mb='25px'>
                 <GroupTitle
                     startDate={startDate}
@@ -84,7 +84,7 @@ export function Feed() {
 
             {repositories.map((repoGroup, counter: number) => {
                 const groupTitle = counter > 0 && (
-                    <Flex align="center" justify="center">
+                    <Flex align="center" justify="center" mx='30px' my='30px'>
                         <GroupTitle
                             startDate={repoGroup.startDate}
                             endDate={repoGroup.endDate}
@@ -98,7 +98,6 @@ export function Feed() {
                         {groupTitle}
                         <SimpleGrid columns={viewType === 'list' ? 1 : 3} spacing='15px'>
                             {repoGroup.items.map(repo =>
-                                
                                 <Repo isListView={viewType === 'list' ? true : false} repo={repo} />
                             )}
                         </SimpleGrid>
@@ -109,10 +108,10 @@ export function Feed() {
 
 
             <Flex alignItems='center' justifyContent='center' mt='20px' mb='20px'>
-                <Button isLoading={loading} onClick={() => {
+                <Button  onClick={() => {
                     setEndDate(startDate);
-                    setStartDate(moment(startDate).subtract(1, dateJump).format())
-                }} variantColor='blue'>Load next group</Button>
+                    setStartDate(moment(startDate).subtract(1, dateJump).format());
+                }} isLoading = {loading} variantColor='blue'>Load next group</Button>
             </Flex>
         </Box>
     );

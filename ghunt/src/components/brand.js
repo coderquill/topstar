@@ -6,8 +6,8 @@ export function Brand() {
         <Flex alignItems='center'>
             <Image src='/logo.png' />
             <Box ml='10px'>
-                <Heading fontSize='25px'>GitHunt</Heading>
-                <Text color='gray.600'>Most starred projects on GitHub</Text>
+                <Heading fontSize='25px'>TopStar</Heading>
+                <Text color='gray.600'>Top starred repositories on GitHub</Text>
             </Box>
         </Flex>
     );
