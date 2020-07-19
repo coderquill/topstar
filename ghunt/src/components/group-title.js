@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from "@chakra-ui/core";
+import { Text } from "@chakra-ui/core";
 import moment from 'moment';
 
 

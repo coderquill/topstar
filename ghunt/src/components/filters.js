@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React from "react"; 
 import { Box, Icon, Select, Button, Menu, MenuButton, MenuList, MenuItem, Stack } from "@chakra-ui/core";
 import languages from '../data/languages.json';
 import { FaTable, FaList } from "react-icons/fa";
