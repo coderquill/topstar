@@ -4,8 +4,8 @@ import { GoIssueOpened, GoRepoForked } from 'react-icons/go';
 
 export function Repo(props) {
 
-    const { isListView } = props;
-    console.log(isListView);
+    const { isListView = false, repo } = props;
+   // console.log(isListView);
 
     return (
 

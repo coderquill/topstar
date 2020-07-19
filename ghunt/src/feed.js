@@ -54,14 +54,10 @@ export function Feed() {
 
 
         get(`/search/repositories?${filtersQuery}`).then((res) => {
-            setRepositories([
-                ...repositories,
-                {
-                    startDate,
-                    endDate,
-                    items: res.items
-                },
-            ]);
+            //reposirories has an object : {startDate, endDate, items:[](array of objects)}
+            //console.log("res.item"+JSON.stringify(res.data.items));
+            setRepositories([...repositories,{ startDate,endDate, items: res.data.items }]);
+            //console.log("repos"+JSON.stringify(repositories));
         });
     }, [startDate]);
 
@@ -79,18 +75,29 @@ export function Feed() {
                     onLanguageChange={setLanguage}
                 />
             </Flex>
-            <SimpleGrid columns={viewType==='list'? 1 : 3} spacing='15px'>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                <Repo isListView = {viewType==='list'?true:false}/>
-                
-            </SimpleGrid>
+
+            {repositories.map((repoGroup, counter) => {
+                const groupTitle = counter > 0 && (
+                    <GroupTitle
+                        startDate={repoGroup.startDate}
+                        endDate={repoGroup.endDate}
+                    />
+                )
+                return (
+                    <Box>
+                        {groupTitle}
+                        <SimpleGrid columns={viewType === 'list' ? 1 : 3} spacing='15px'>
+                           {repoGroup.items.map(repo => 
+                            //console.log("each repo"+ JSON.stringify(repo));
+                            <Repo isListView = {viewType==='list'?true:false} repo = {repo} />
+                           )}
+                        </SimpleGrid>
+                    </Box>
+
+                );
+            })}
+
+            
             <Flex alignItems='center' justifyContent='center' mt='20px' mb = '20px'>
                 <Button variantColor='blue'>Load next group</Button>
             </Flex>
