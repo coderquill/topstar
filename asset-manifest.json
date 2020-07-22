@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/topstar/static/js/main.8cc7d8a8.chunk.js",
-    "main.js.map": "/topstar/static/js/main.8cc7d8a8.chunk.js.map",
+    "main.js": "/topstar/static/js/main.02e89e4a.chunk.js",
+    "main.js.map": "/topstar/static/js/main.02e89e4a.chunk.js.map",
     "runtime-main.js": "/topstar/static/js/runtime-main.9cc24efe.js",
     "runtime-main.js.map": "/topstar/static/js/runtime-main.9cc24efe.js.map",
     "static/js/2.292429e2.chunk.js": "/topstar/static/js/2.292429e2.chunk.js",
     "static/js/2.292429e2.chunk.js.map": "/topstar/static/js/2.292429e2.chunk.js.map",
     "index.html": "/topstar/index.html",
-    "precache-manifest.2a93d98ff4b550c41510d2bc65514fa3.js": "/topstar/precache-manifest.2a93d98ff4b550c41510d2bc65514fa3.js",
+    "precache-manifest.662cbae8b0795f6827e760b925247dd4.js": "/topstar/precache-manifest.662cbae8b0795f6827e760b925247dd4.js",
     "service-worker.js": "/topstar/service-worker.js",
     "static/js/2.292429e2.chunk.js.LICENSE.txt": "/topstar/static/js/2.292429e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9cc24efe.js",
     "static/js/2.292429e2.chunk.js",
-    "static/js/main.8cc7d8a8.chunk.js"
+    "static/js/main.02e89e4a.chunk.js"
   ]
 }
